@@ -5,6 +5,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for icons
 import SignInScreen from "./src/SignInScreen";
 import HomeScreen from "./src/HomeScreen";
 import SignUpScreen from "./src/SignUpScreen";
@@ -17,11 +18,37 @@ import Analytics from "./src/Analytics";
 
 const Drawer = createDrawerNavigator();
 
+// Define mapping between route names and corresponding Ionicons
+const routeIcons = {
+  Home: "home",
+  "Seizure Tracker": "analytics",
+  "My Information": "person",
+  Analytics: "bar-chart",
+  "About FAQ": "information-circle",
+};
+
 export default function App() {
   return (
     <NavigationContainer>
-      {/* ADD ICONS  */}
-      <Drawer.Navigator initialRouteName="Splash Screen">
+      <Drawer.Navigator
+        initialRouteName="Splash Screen"
+        screenOptions={({ route }) => ({
+          drawerIcon: ({ focused, color, size }) => {
+            const iconName = routeIcons[route.name]; // Get the corresponding icon name for the current route
+
+            // Return the Ionicons component with the appropriate icon name
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+        })}
+        drawerStyle={{
+          // Customize the drawer style to display the icon in the header for the initial navigation tab
+          headerStyle: {
+            backgroundColor: "white",
+          },
+          headerTintColor: "black",
+          headerRight: () => <Ionicons name="menu" size={24} color="black" />,
+        }}
+      >
         <Drawer.Screen name="Splash Screen" component={SplashScreen} />
         <Drawer.Screen name="Home" component={HomeScreen} />
         <Drawer.Screen name="Seizure Tracker" component={SeizureTracker} />
@@ -32,21 +59,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-// const Stack = createNativeStackNavigator();
-
-// export default function App() {
-//   return (
-//     <NativeBaseProvider>
-//       <NavigationContainer>
-//         <Stack.Navigator initialRouteName="SplashScreen">
-//           <Stack.Screen name="Splash Screen" component={SplashScreen} />
-//           <Stack.Screen name="SignUp" component={SignUpPage} />
-//           <Stack.Screen name="SignIn" component={SignInPage} />
-//           <Stack.Screen name="Home" component={Home} />
-//         </Stack.Navigator>
-//         {/* <TabBar /> */}
-//       </NavigationContainer>
-//     </NativeBaseProvider>
-//   );
-// }
