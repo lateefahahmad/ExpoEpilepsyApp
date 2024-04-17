@@ -1,66 +1,105 @@
-/* eslint-disable react/jsx-key */
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet } from "react-native";
+import React from "react";
 import {
-  Alert,
-  CloseIcon,
-  HStack,
-  IconButton,
-  Stack,
-  Text,
+  Center,
+  Heading,
   VStack,
+  FormControl,
+  Input,
+  Link,
+  Button,
+  HStack,
+  Text,
 } from "native-base";
 
-import React from "react-native";
-
 const SignInScreen = () => {
-  const statusArray = [
-    {
-      status: "success",
-      title: "Selection successfully moved!",
-    },
-    {
-      status: "error",
-      title: "Please try again later!",
-    },
-    {
-      status: "info",
-      title: "We are going live in July!",
-    },
-    {
-      status: "warning",
-      title: "Poor internet connection.",
-    },
-  ];
-
   return (
-    <Stack space={3} w="100%" padding={10} maxW="400">
-      {statusArray.map((status) => {
-        return (
-          <Alert w="100%" key={status.title} status={status.status}>
-            <VStack space={2} flexShrink={1} w="100%">
-              <HStack flexShrink={1} space={2} justifyContent="space-between">
-                <HStack space={2} flexShrink={1}>
-                  <Alert.Icon mt="1" />
-                  <Text fontSize="md" color="coolGray.800">
-                    {status.title}
-                  </Text>
-                </HStack>
-                <IconButton
-                  variant="unstyled"
-                  _focus={{
-                    borderWidth: 0,
-                  }}
-                  icon={<CloseIcon size="3" />}
-                  _icon={{
-                    color: "coolGray.600",
-                  }}
-                />
-              </HStack>
-            </VStack>
-          </Alert>
-        );
-      })}
-    </Stack>
+    <SafeAreaView style={styles.container}>
+      <Center flex={1}>
+        <VStack space={3} alignItems="center">
+          <Heading
+            size="lg"
+            fontWeight="600"
+            color="coolGray.800"
+            _dark={{ color: "warmGray.50" }}
+          >
+            Welcome
+          </Heading>
+          <Heading
+            size="xs"
+            fontWeight="medium"
+            color="coolGray.600"
+            _dark={{ color: "warmGray.200" }}
+          >
+            Sign in to continue!
+          </Heading>
+          <FormControl style={styles.FormControl}>
+            <FormControl.Label>Email ID</FormControl.Label>
+            <Input style={styles.input} />
+          </FormControl>
+          <FormControl>
+            <FormControl.Label>Password</FormControl.Label>
+            <Input style={styles.input} type="password" />
+            <Link
+              _text={{
+                fontSize: "xs",
+                fontWeight: "500",
+                color: "indigo.500",
+              }}
+              alignSelf="flex-end"
+              mt="1"
+            >
+              Forget Password?
+            </Link>
+          </FormControl>
+          <Button mt="2" colorScheme="indigo" style={styles.button}>
+            Sign in
+          </Button>
+          <HStack mt="6" justifyContent="center">
+            <Text
+              fontSize="sm"
+              color="coolGray.600"
+              _dark={{ color: "warmGray.200" }}
+            >
+              I'm a new user.{" "}
+            </Text>
+            <Link
+              _text={{
+                color: "indigo.500",
+                fontWeight: "medium",
+                fontSize: "sm",
+              }}
+              href="#"
+            >
+              Sign Up
+            </Link>
+          </HStack>
+        </VStack>
+      </Center>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    justifyContent: "center",
+  },
+  formControl: {
+    width: "100%",
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "gray",
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    height: 40,
+  },
+  button: {
+    width: "100%",
+  },
+});
 
 export default SignInScreen;
