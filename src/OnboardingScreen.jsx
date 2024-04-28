@@ -7,7 +7,7 @@ const OnboardingScreen = () => {
 
   return (
     <OnboardFlow
-      onComplete={() => navigation.navigate("SignIn")}
+      onDone={() => navigation.navigate("SignIn")}
       pages={[
         {
           title: "Welcome to EpiTrack",
