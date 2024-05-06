@@ -7,16 +7,16 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for icons
 
-import SignInScreen from "./src/SignInScreen";
-import HomeScreen from "./src/HomeScreen";
-import SignUpScreen from "./src/SignUpScreen";
-import SplashScreen from "./src/SplashScreen";
-import SeizureTracker from "./src/SeizureTracker";
-import MyInfoScreen from "./src/MyInfoScreen";
-import AboutScreen from "./src/AboutScreen";
-import Analytics from "./src/Analytics";
-import SettingsScreen from "./src/SettingsScreen";
-import OnboardingScreen from "./src/OnboardingScreen";
+import SignInScreen from "./src/screens/SignInScreen";
+import HomeScreen from "./src/screens/HomeScreen";
+import SignUpScreen from "./src/screens/SignUpScreen";
+import SplashScreen from "./src/screens/SplashScreen";
+import SeizureTracker from "./src/screens/SeizureTracker";
+import MyInfoScreen from "./src/screens/MyInfoScreen";
+import AboutScreen from "./src/screens/AboutScreen";
+import Analytics from "./src/screens/Analytics";
+import SettingsScreen from "./src/screens/SettingsScreen";
+import OnboardingScreen from "./src/screens/OnboardingScreen";
 
 // import { registerRootComponent } from "expo";
 // import epilepsyapp from "./app.json";
@@ -34,6 +34,8 @@ const routeIcons = {
   "How to Use EpiTrack": "information-circle",
   Settings: "settings",
 };
+
+import firebase from "./src/firebase";
 
 export default function App() {
   return (
